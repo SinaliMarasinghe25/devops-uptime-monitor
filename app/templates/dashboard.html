@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="card">
+    <div class="header">
+        <p class="badge">DevOps Monitoring Tool</p>
+        <h1>Uptime Monitor</h1>
+        <p class="subtitle">
+            Enter a website or API URL to check whether it is reachable.
+        </p>
+    </div>
+
+    <form method="POST" class="monitor-form">
+        <input
+            type="text"
+            name="url"
+            placeholder="Example: https://github.com"
+            required
+        >
+        <button type="submit">Check Status</button>
+    </form>
+
+    {% if result %}
+        <div class="result-card">
+            <h2>Status Result</h2>
+
+            <div class="result-row">
+                <span>URL</span>
+                <strong>{{ result.url }}</strong>
+            </div>
+
+            <div class="result-row">
+                <span>Status</span>
+                <strong class="status {{ result.status|lower }}">
+                    {{ result.status }}
+                </strong>
+            </div>
+
+            <div class="result-row">
+                <span>Status Code</span>
+                <strong>
+                    {{ result.status_code if result.status_code else "N/A" }}
+                </strong>
+            </div>
+
+            <div class="result-row">
+                <span>Response Time</span>
+                <strong>
+                    {{ result.response_time_ms if result.response_time_ms else "N/A" }}
+                    {% if result.response_time_ms %}ms{% endif %}
+                </strong>
+            </div>
+
+            <div class="message">
+                {{ result.message }}
+            </div>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}
