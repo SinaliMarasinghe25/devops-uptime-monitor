@@ -1,0 +1,12 @@
+services:
+  uptime-monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: devops-uptime-monitor:local
+    container_name: uptime-monitor-app
+    ports:
+      - "5000:5000"
+    environment:
+      FLASK_DEBUG: "false"
+    restart: unless-stopped
