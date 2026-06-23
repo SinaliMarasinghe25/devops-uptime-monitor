@@ -56,5 +56,43 @@
             </div>
         </div>
     {% endif %}
+
+    {% if recent_checks %}
+        <div class="history-card">
+            <h2>Recent Checks</h2>
+
+            <div class="table-wrapper">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Status</th>
+                            <th>Code</th>
+                            <th>Response</th>
+                            <th>Checked At</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for check in recent_checks %}
+                            <tr>
+                                <td>{{ check.service.name }}</td>
+                                <td>
+                                    <span class="status {{ check.status|lower }}">
+                                        {{ check.status }}
+                                    </span>
+                                </td>
+                                <td>{{ check.status_code if check.status_code else "N/A" }}</td>
+                                <td>
+                                    {{ check.response_time_ms if check.response_time_ms else "N/A" }}
+                                    {% if check.response_time_ms %}ms{% endif %}
+                                </td>
+                                <td>{{ check.checked_at.strftime("%Y-%m-%d %H:%M") }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endif %}
 </section>
 {% endblock %}

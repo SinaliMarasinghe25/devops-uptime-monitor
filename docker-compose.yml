@@ -1,4 +1,21 @@
 services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: uptime-monitor-db
+    environment:
+      POSTGRES_DB: uptime_db
+      POSTGRES_USER: uptime_user
+      POSTGRES_PASSWORD: uptime_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U uptime_user -d uptime_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
   uptime-monitor:
     build:
       context: .
@@ -9,4 +26,11 @@ services:
       - "5000:5000"
     environment:
       FLASK_DEBUG: "false"
+      DATABASE_URL: "postgresql+psycopg2://uptime_user:uptime_password@postgres:5432/uptime_db"
+    depends_on:
+      postgres:
+        condition: service_healthy
     restart: unless-stopped
+
+volumes:
+  postgres_data:

@@ -1,10 +1,4 @@
-from app import create_app
-
-
-def test_health_endpoint_returns_healthy_status():
-    app = create_app()
-    client = app.test_client()
-
+def test_health_endpoint_returns_healthy_status(client):
     response = client.get("/health")
 
     assert response.status_code == 200
@@ -12,10 +6,7 @@ def test_health_endpoint_returns_healthy_status():
     assert response.get_json()["service"] == "DevOps Uptime Monitor"
 
 
-def test_dashboard_page_loads():
-    app = create_app()
-    client = app.test_client()
-
+def test_dashboard_page_loads(client):
     response = client.get("/")
 
     assert response.status_code == 200
