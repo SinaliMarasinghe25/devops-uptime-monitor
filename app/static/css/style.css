@@ -175,6 +175,52 @@ h1 {
     line-height: 1.5;
 }
 
+.history-card {
+    margin-top: 32px;
+    padding: 26px;
+    border: 3px solid #111111;
+    border-radius: 18px;
+    background: #fff8d6;
+    box-shadow: 6px 6px 0 #111111;
+}
+
+.history-card h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #111111;
+    font-size: 26px;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border: 2px solid #111111;
+}
+
+.history-table th,
+.history-table td {
+    padding: 12px;
+    border-bottom: 2px solid #111111;
+    text-align: left;
+    color: #111111;
+    font-size: 14px;
+}
+
+.history-table th {
+    background: #bdeeff;
+    font-weight: 900;
+}
+
+.history-table tr:last-child td {
+    border-bottom: none;
+}
+
 @media (max-width: 640px) {
     .page-wrapper {
         padding: 20px;
