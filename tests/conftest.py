@@ -15,6 +15,7 @@ def app():
 
     with test_app.app_context():
         db.session.remove()
+        db.drop_all()
 
 
 @pytest.fixture()
