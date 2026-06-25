@@ -28,6 +28,19 @@ pipeline {
             }
         }
 
+        stage('Prepare Compose Environment') {
+            steps {
+                sh '''
+                    cat > .env <<EOF
+POSTGRES_DB=uptime_db
+POSTGRES_USER=uptime_user
+POSTGRES_PASSWORD=jenkins_test_password_123
+DATABASE_URL=postgresql+psycopg2://uptime_user:jenkins_test_password_123@postgres:5432/uptime_db
+EOF
+                '''
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 sh '''
