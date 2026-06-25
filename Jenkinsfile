@@ -9,21 +9,21 @@ pipeline {
         }
 
         stage('Set Up Python Environment') {
-            steps {
-                sh '''
-                    python3 -m venv venv
-                    . venv/bin/activate
-                    python -m pip install --upgrade pip
-                    pip install -r requirements.txt
-                '''
-            }
-        }
+    steps {
+        sh '''
+            python3 -m venv venv
+            venv/bin/python -m pip install --upgrade pip
+            venv/bin/python -m pip install -r requirements.txt
+        '''
+    }
+}
 
         stage('Run Tests') {
             steps {
                 sh '''
-                    . venv/bin/activate
-                    pytest
+                    pwd
+                    ls -la
+                    PYTHONPATH=$WORKSPACE venv/bin/python -m pytest -v
                 '''
             }
         }
