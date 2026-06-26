@@ -39,7 +39,7 @@ POSTGRES_USER=uptime_user
 POSTGRES_PASSWORD=jenkins_test_password_123
 DATABASE_URL=postgresql+psycopg2://uptime_user:jenkins_test_password_123@postgres:5432/uptime_db
 APP_PORT=5050
-POSTGRES_PORT=55432
+
 EOF
                 '''
             }
