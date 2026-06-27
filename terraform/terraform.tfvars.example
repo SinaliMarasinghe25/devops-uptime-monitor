@@ -1,0 +1,7 @@
+project_name        = "uptime-monitor"
+environment         = "dev"
+resource_group_name = "rg-uptime-monitor-iac-dev"
+location            = "eastus"
+vm_size             = "Standard_D2as_v7"
+admin_username      = "azureuser"
+ssh_public_key_path = "~/.ssh/uptime_monitor_azure.pub"

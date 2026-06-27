@@ -29,3 +29,9 @@ dist/
 
 *.db
 uptime.db
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraform.lock.hcl
