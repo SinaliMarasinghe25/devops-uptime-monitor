@@ -23,6 +23,8 @@ services:
     environment:
       FLASK_DEBUG: "false"
       DATABASE_URL: ${DATABASE_URL}
+      SCHEDULER_ENABLED: ${SCHEDULER_ENABLED:-true}
+      CHECK_INTERVAL_MINUTES: ${CHECK_INTERVAL_MINUTES:-5}
     depends_on:
       postgres:
         condition: service_healthy

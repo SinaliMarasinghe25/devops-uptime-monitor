@@ -1,8 +1,10 @@
 import os
 
-from flask import Flask
+from flask import Flask, app
 
 from app.extensions import db
+from app.scheduler import start_scheduler
+from app.scheduler import start_scheduler
 
 
 def create_app(test_config=None):
@@ -25,5 +27,8 @@ def create_app(test_config=None):
     with app.app_context():
         from app import models
         db.create_all()
+
+    from app.scheduler import start_scheduler
+    start_scheduler(app)
 
     return app
