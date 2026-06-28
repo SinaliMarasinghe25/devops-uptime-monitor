@@ -25,6 +25,13 @@ services:
       DATABASE_URL: ${DATABASE_URL}
       SCHEDULER_ENABLED: ${SCHEDULER_ENABLED:-true}
       CHECK_INTERVAL_MINUTES: ${CHECK_INTERVAL_MINUTES:-5}
+      ALERT_EMAIL_ENABLED: ${ALERT_EMAIL_ENABLED:-false}
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USERNAME: ${SMTP_USERNAME:-}
+      SMTP_PASSWORD: ${SMTP_PASSWORD:-}
+      ALERT_FROM_EMAIL: ${ALERT_FROM_EMAIL:-}
+      ALERT_TO_EMAIL: ${ALERT_TO_EMAIL:-}
     depends_on:
       postgres:
         condition: service_healthy
